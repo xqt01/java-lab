@@ -1,7 +1,7 @@
 package com.xqt.cocurrency;
 
 /**
- * 利用volatile写线程安全的单例
+ * 利用volatile写线程安全的单例. 实际就是信号量
  * @author huanruiz
  * @since 2024/7/28
  */

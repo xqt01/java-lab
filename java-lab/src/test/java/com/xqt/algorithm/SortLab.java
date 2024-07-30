@@ -13,7 +13,8 @@ public class SortLab {
         int n = arr.length;
         // bubbleSort(arr);
         // selectSort(arr);
-        insertSort(arr);
+        // insertSort(arr);
+        mergeSort(arr, 0, arr.length - 1);
 
         System.out.println(Arrays.toString(arr));
     }
@@ -67,6 +68,43 @@ public class SortLab {
                 j--;
             }
             arr[j + 1] = cur;
+        }
+    }
+
+    /**
+     * 归并排序: 二叉树的后序遍历. 拆成最小元素后, 依次排序.
+     * time: O(nlogn)
+     * space: O(n)
+     */
+    public static void mergeSort(int[] arr, int left, int right) {
+        if (left < right) {
+            int mid = (right - left) / 2 + left;
+            mergeSort(arr, left, mid);
+            mergeSort(arr, mid + 1, right);
+            merge(arr, left, mid, right);
+        }
+    }
+
+    private static void merge(int[] arr, int left, int mid, int right) {
+        int[] temp = new int[right - left + 1];
+        int i = left;
+        int j = mid + 1;
+        int index = 0;
+        while (i <= mid && j <= right) {
+            if (arr[i] <= arr[j]) {
+                temp[index++] = arr[i++];
+            } else {
+                temp[index++] = arr[j++];
+            }
+        }
+        while (i <= mid) {
+            temp[index++] = arr[i++];
+        }
+        while (j <= right) {
+            temp[index++] = arr[j++];
+        }
+        for (int k = left; k <= right; k++) {
+            arr[k] = temp[k - left];
         }
     }
 }
