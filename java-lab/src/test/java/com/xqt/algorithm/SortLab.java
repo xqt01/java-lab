@@ -14,7 +14,8 @@ public class SortLab {
         // bubbleSort(arr);
         // selectSort(arr);
         // insertSort(arr);
-        mergeSort(arr, 0, arr.length - 1);
+        // mergeSort(arr, 0, arr.length - 1);
+        quickSort(arr, 0, arr.length - 1);
 
         System.out.println(Arrays.toString(arr));
     }
@@ -75,6 +76,7 @@ public class SortLab {
      * 归并排序: 二叉树的后序遍历. 拆成最小元素后, 依次排序.
      * time: O(nlogn)
      * space: O(n)
+     * todo: 链表排序
      */
     public static void mergeSort(int[] arr, int left, int right) {
         if (left < right) {
@@ -107,4 +109,42 @@ public class SortLab {
             arr[k] = temp[k - left];
         }
     }
+
+    /**
+     * 快速排序
+     * time: 平均O(nlogn)
+     * space: O(n)
+     */
+    public static void quickSort(int[] arr, int left, int right) {
+        if (left < right) {
+            int p = partition(arr, left, right);
+            quickSort(arr, left, p - 1);
+            quickSort(arr, p + 1, right);
+        }
+    }
+
+    private static int partition(int[] arr, int left, int right) {
+        int i = left, j = right;
+        while (i < j) {
+            while (i < j && arr[i] < arr[left]) {
+                i++;
+            }
+            while (i < j && arr[j] > arr[left]) {
+                j--;
+            }
+            swap(arr, i, j);
+        }
+        swap(arr, left, i);
+        return i;
+    }
+
+    /**
+     * 交换数组的元素
+     */
+    private static void swap(int[] arr, int i, int j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
+
 }
