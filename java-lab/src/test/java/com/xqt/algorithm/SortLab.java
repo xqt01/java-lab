@@ -139,6 +139,46 @@ public class SortLab {
     }
 
     /**
+     * 堆排序: i节点父节点: (i - 1) / 2; 子节点(i + 1) / 2与(i + 2) / 2
+     * time: 平均O(nlogn)
+     * space: O(1)
+     */
+    public static void heapSort(int[] arr) {
+        // 最后一个节点arr.length - 1的父节点开始建堆
+        for (int i = (arr.length - 2) / 2; i >= 0; i--) {
+            siftDown(arr, arr.length, i);
+        }
+        // 把最大值放到最后
+        for (int i = arr.length - 1; i > 0; i--) {
+            swap(arr, 0, i);
+            siftDown(arr, i, 0);
+        }
+    }
+
+    private static void siftDown(int[] arr, int n, int i) {
+        while (true) {
+            // 取该节点和左右叶子节点最大值
+            int l = 2 * i + 1;
+            int r = 2 * i + 2;
+            int maxIndex = i;
+            if (l < n && arr[l] > arr[maxIndex]) {
+                maxIndex = l;
+            }
+            if (r < n && arr[r] > arr[maxIndex]) {
+                maxIndex = r;
+            }
+            if (maxIndex == i) {
+                break;
+            }
+            // 交换两节点
+            swap(arr, i, maxIndex);
+            // 向叶子节点堆化
+            i = maxIndex;
+        }
+    }
+
+
+    /**
      * 交换数组的元素
      */
     private static void swap(int[] arr, int i, int j) {

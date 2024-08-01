@@ -76,7 +76,7 @@ public class Sort {
             }
             arr[j + 1] = cur;
         }
-    }    
+    }
 
     private static void swap(int[] arr, int i, int j) {
         int tmp = arr[i];
@@ -127,7 +127,7 @@ public class Sort {
             quickSort(arr, p + 1, right);
         }
     }
-    
+
     private static int partition(int[] arr, int left, int right) {
         int i = left, j = right;
         while (i < j) {
@@ -144,7 +144,7 @@ public class Sort {
     }
 
     /**
-     * 堆排序: i节点父节点: (i - 1) / 2; 子节点(i + 1) / 2与(i + 2) / 2
+     * 堆排序: i节点父节点: (i - 1) / 2; 子节点2i + 1与2i + 2
      * time: 平均O(nlogn)
      * space: O(1)
      */
