@@ -15,7 +15,9 @@ public class SortLab {
         // selectSort(arr);
         // insertSort(arr);
         // mergeSort(arr, 0, arr.length - 1);
-        quickSort(arr, 0, arr.length - 1);
+        // quickSort(arr, 0, arr.length - 1);
+        // heapSort(arr);
+        countSort(arr);
 
         System.out.println(Arrays.toString(arr));
     }
@@ -177,6 +179,32 @@ public class SortLab {
         }
     }
 
+    /**
+     * 计数排序, 用数组的index代表数字, value代表数量, 再遍历填入数组.
+     * 通过前缀和实现, value就代表当前元素应该出现的index位置, 就可以根据num来生成, 如果num中的元素是Object就可以这样做.
+     * 适用于范围不大的非负整数
+     * time: O(n + m)
+     * space: O(n + m)
+     */
+    public static void countSort(int[] arr) {
+        int maxValue = -1;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > maxValue) {
+                maxValue = arr[i];
+            }
+        }
+        int[] countArr = new int[maxValue + 1];
+        for (int i = 0; i < arr.length; i++) {
+            countArr[arr[i]] += 1;
+        }
+        int index = 0;
+        for (int i = 0; i < maxValue + 1; i++) {
+            if (countArr[i] > 0) {
+                arr[index++] = i;
+                countArr[i] = countArr[i] - 1;
+            }
+        }
+    }
 
     /**
      * 交换数组的元素

@@ -185,7 +185,8 @@ public class Sort {
     }
 
     /**
-     * 计数排序, 用数组的index代表数字, value代表数量, 再遍历填入数组. 通过前缀和实现, value就代表当前元素应该出现的index位置, 就可以根据num来生成, 如果num中的元素师Object就可以这样做.
+     * 计数排序, 用数组的index代表数字, value代表数量, 再遍历填入数组.
+     * 通过前缀和实现, value就代表当前元素应该出现的index位置, 用原数组arr来生成结果, 若arr为对象就只能这么写
      * 适用于范围不大的非负整数
      * time: O(n + m)
      * space: O(n + m)
