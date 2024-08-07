@@ -17,8 +17,8 @@ public class SortLab {
         // mergeSort(arr, 0, arr.length - 1);
         // quickSort(arr, 0, arr.length - 1);
         // heapSort(arr);
-        countSort(arr);
-
+        // countSort(arr);
+        betterCountSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 
@@ -206,6 +206,31 @@ public class SortLab {
         }
     }
 
+    public static void betterCountSort(int[] arr) {
+        int maxValue = -1;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > maxValue) {
+                maxValue = arr[i];
+            }
+        }
+        int[] countArr = new int[maxValue + 1];
+        for (int i = 0; i < arr.length; i++) {
+            countArr[arr[i]] += 1;
+        }
+        for (int i = 1; i < countArr.length; i++) {
+            countArr[i] += countArr[i - 1];
+        }
+        int[] res = new int[arr.length];
+        for (int i = arr.length - 1; i >= 0; i--) {
+            int index = countArr[arr[i]] - 1;
+            countArr[arr[i]] = index;
+            res[index] = arr[i];
+        }
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = res[i];
+        }
+    }
+
     /**
      * 交换数组的元素
      */
@@ -214,5 +239,4 @@ public class SortLab {
         arr[i] = arr[j];
         arr[j] = tmp;
     }
-
 }
